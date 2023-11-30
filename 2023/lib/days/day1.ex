@@ -1,6 +1,5 @@
 defmodule Advent.Day1 do
-  def run(filepath) do
-    Advent.Util.Input.lines(filepath)
-    |> Enum.join(", ")
+  def run(lines) do
+    Enum.join(lines, ", ")
   end
 end

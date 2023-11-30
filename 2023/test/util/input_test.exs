@@ -15,13 +15,16 @@ defmodule Test.Util.Input do
 
   describe("Input.lines/2 should") do
     test("transform lines given mapping function") do
-      lines = Input.lines("README.md", fn line ->
-        "#{line}-ok"
-      end)
+      lines =
+        Input.lines("README.md", fn line ->
+          "#{line}-ok"
+        end)
+
       assert length(lines) > 0
+
       assert Enum.each(lines, fn s ->
-        String.ends_with?(s, "-ok")
-      end)
+               String.ends_with?(s, "-ok")
+             end)
     end
   end
 end

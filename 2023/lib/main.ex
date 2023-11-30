@@ -1,15 +1,11 @@
 defmodule Advent.Main do
-  def main(_args) do
-    days = [
-      Advent.Day1,
-    ]
+  alias Advent.Util.Input
 
-    days
-    |> Enum.with_index(fn(mod, index) ->
-      {input_file(index+1), mod}
-    end)
-    |> Enum.map(fn {filepath, mod} ->
-      Task.async(mod, :run, [filepath])
+  def main(_args) do
+    days()
+    |> Enum.with_index(&get_input/2)
+    |> Enum.map(fn {input, mod} ->
+      Task.async(mod, :run, [input])
     end)
     |> Task.await_many(10_000)
     |> Enum.each(fn result ->
@@ -17,7 +13,19 @@ defmodule Advent.Main do
     end)
   end
 
-  defp input_file(day) do
-    "inputs/day#{day}.txt"
+  defp get_input({mod, :lines}, index) do
+    lines = Input.lines("inputs/day#{index + 1}.txt")
+    {lines, mod}
+  end
+
+  defp get_input({mod, :string}, index) do
+    input = Input.string("inputs/day#{index + 1}.txt")
+    {input, mod}
+  end
+
+  defp days() do
+    [
+      {Advent.Day1, :lines}
+    ]
   end
 end
