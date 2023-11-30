@@ -1,0 +1,5 @@
+run: build
+	./advent
+
+build:
+	mix escript.build

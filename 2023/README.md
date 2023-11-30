@@ -1,21 +1,7 @@
-# Advent
+# Advent of Code 2023
 
-**TODO: Add description**
+AoC for 2023 in Elixir.
 
-## Installation
+## Requirements
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `advent` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:advent, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/advent>.
-
+You need [Elixir](https://elixir-lang.org/) installed in order to run.
