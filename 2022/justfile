@@ -1,0 +1,58 @@
+envdir := ".env"
+
+# Some dependencies can be installed locally to .env
+# Activate "virtual" environment: source activate
+setup:
+	#!/usr/bin/bash
+	set -e pipefail
+	mkdir -p {{ envdir }}
+	cd {{ envdir }}
+
+	if [[ ! -d "julia-1.8.3" ]]; then
+	  wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.3-linux-x86_64.tar.gz -O julia.tar.gz
+	  tar -xzf julia.tar.gz
+	fi
+
+	# Scala
+	if [[ ! -x cs ]]; then
+	  curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs
+	  ./cs setup --yes
+	fi
+	
+test:
+	cd day3 && lein test
+
+day1:
+	cd day1 && bash day1.sh input.txt
+day2 infile="input.txt":
+	cd day2 && awk -f part1.awk < {{ infile }}
+	cd day2 && awk -f part2.awk < {{ infile }}
+day3 infile="input.txt":
+	cd day3 && lein run {{ infile }}
+day4 infile="input.txt":
+	cd day4 && node . {{ infile }}
+day5 infile="input.txt":
+	cd day5 && julia main.jl {{ infile }}
+day6 infile="input.txt":
+	cd day6 && dotnet run {{ infile }}
+day7 infile="input.txt":
+	cd day7 && scala main.sc {{ infile }}
+day8 infile="input.txt":
+	cd day8 && dotnet run {{ infile }}
+day9 infile="input.txt":
+	cd day9 && elixir main.exs {{ infile }}
+day10 infile="input.txt":
+	cd day10 && runhaskell main.hs {{ infile }}
+day11 infile="input.txt":
+	cd day11 && lua main.lua < {{ infile }}
+day12 infile="input.txt":
+	cd day12 && python main.py < {{ infile }}
+
+# Prepared solutions
+
+nim:
+	cd nim && nim compile main.nim && ./main input.txt
+golang infile="input.txt":
+	cd golang && go run main.go {{ infile }}
+rust infile="input.txt":
+	cd rust && cargo run -- {{ infile }}
