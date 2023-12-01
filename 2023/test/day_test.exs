@@ -8,13 +8,14 @@ defmodule Test.Day do
   @day 1
 
   test("solution for day #{@day}", %{lines: lines}) do
-    result = Advent.Day1.run(lines)
-    assert result =~ ~r/one, two/
+    result = Advent.Day1.part2(lines)
+    assert result == 281
   end
 
   setup(_) do
-    lines = Input.lines("inputs/day#{@day}.txt")
-    string = Input.string("inputs/day#{@day}.txt")
+    filename = "day#{@day}.sample.txt"
+    lines = Input.lines("inputs/#{filename}")
+    string = Input.string("inputs/#{filename}")
     {:ok, lines: lines, string: string}
   end
 end
