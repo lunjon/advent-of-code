@@ -3,3 +3,6 @@ run: build
 
 build:
 	mix escript.build
+
+check:
+	mix do format, compile, dialyzer

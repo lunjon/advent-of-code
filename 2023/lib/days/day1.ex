@@ -42,7 +42,7 @@ defmodule Advent.Day1 do
     case Regex.run(@reg, line, capture: :all_but_first, return: :index) do
       [{a, b}] ->
         num = String.slice(line, a, b)
-        get_nums(String.slice(line, a+1, String.length(line)), [num | acc])
+        get_nums(String.slice(line, a + 1, String.length(line)), [num | acc])
 
       nil ->
         get_nums(String.slice(line, 1, String.length(line)), acc)
@@ -57,6 +57,7 @@ defmodule Advent.Day1 do
   end
 
   defp convert([num]), do: convert([num, num])
+
   defp convert([first | rest]) do
     Integer.parse(first <> List.last(rest))
     |> elem(0)
