@@ -4,21 +4,21 @@ defmodule Advent.Day2 do
     "Day 2: #{part1(games)}, #{part2(games)}"
   end
 
-  def part2(games) do
+  def part1(games) do
     games
-    |> Enum.map(fn {_, {r, g, b}} ->
-      r * g * b
+    |> Enum.map(fn {id, {r, g, b}} ->
+      case r <= 12 and g <= 13 and b <= 14 do
+        true -> id
+        false -> 0
+      end
     end)
     |> Enum.sum()
   end
 
-  def part1(games) do
-    games
-    |> Enum.filter(fn {_, {r, g, b}} ->
-      r <= 12 and g <= 13 and b <= 14
+  def part2(games) do
+    Enum.reduce(games, 0, fn {_, {r, g, b}}, sum ->
+      r * g * b + sum
     end)
-    |> Enum.map(fn {n, _} -> n end)
-    |> Enum.sum()
   end
 
   @doc """
@@ -40,7 +40,6 @@ defmodule Advent.Day2 do
     {id, {counts["red"], counts["green"], counts["blue"]}}
   end
 
-  # Example set: 3 blue, 4 red
   defp reduce_set(game, set) do
     String.split(set, ", ")
     |> Enum.reduce(game, fn count, acc ->
