@@ -19,12 +19,10 @@ defmodule Advent.Util.Input do
   end
 
   defp read_lines(filepath, mapfunc) do
-    lines =
-      File.read!(filepath)
-      |> String.split("\n")
-      |> Enum.map(&String.trim/1)
-      |> Enum.map(mapfunc)
-
-    Enum.take(lines, length(lines) - 1)
+    File.read!(filepath)
+    |> String.split("\n", trim: true)
+    # |> Enum.map(&String.trim/1)
+    |> Enum.filter(fn line -> line != "" end)
+    |> Enum.map(mapfunc)
   end
 end

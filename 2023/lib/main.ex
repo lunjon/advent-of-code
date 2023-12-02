@@ -3,7 +3,7 @@ defmodule Advent.Main do
 
   def main(_args) do
     days()
-    |> Enum.with_index(&get_input/2)
+    |> Enum.map(&get_input/1)
     |> Enum.map(fn {input, mod} ->
       Task.async(mod, :run, [input])
     end)
@@ -13,19 +13,20 @@ defmodule Advent.Main do
     end)
   end
 
-  defp get_input({mod, :lines}, index) do
-    lines = Input.lines("inputs/day#{index + 1}.txt")
+  defp get_input({day, mod, :lines}) do
+    lines = Input.lines("inputs/day#{day}.txt")
     {lines, mod}
   end
 
-  defp get_input({mod, :string}, index) do
-    input = Input.string("inputs/day#{index + 1}.txt")
+  defp get_input({day, mod, :string}) do
+    input = Input.string("inputs/day#{day}.txt")
     {input, mod}
   end
 
   defp days() do
     [
-      {Advent.Day1, :lines}
+      {1, Advent.Day1, :lines},
+      {2, Advent.Day2, :lines},
     ]
   end
 end
