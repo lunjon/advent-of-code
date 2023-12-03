@@ -3,18 +3,11 @@ defmodule AdventTest do
   alias Advent.Util.Input
 
   doctest Advent.Day2
+  doctest Advent.Day3
 
-  @day 1
-
-  test("solution for day #{@day}", %{lines: lines}) do
-    result = Advent.Day2.part1(lines)
-    assert result == 8
-  end
-
-  setup(_) do
-    filename = "day#{@day}.txt"
-    lines = Input.lines("inputs/#{filename}")
-    string = Input.string("inputs/#{filename}")
-    {:ok, lines: lines, string: string}
+  test("solution for advent") do
+    lines = Input.lines("inputs/day3.sample.txt")
+    assert Advent.Day3.part1(lines) == 4361
+    assert Advent.Day3.part2(lines) == 467_835
   end
 end

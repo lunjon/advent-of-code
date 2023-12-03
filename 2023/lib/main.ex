@@ -26,7 +26,8 @@ defmodule Advent.Main do
   defp days() do
     [
       {1, Advent.Day1, :lines},
-      {2, Advent.Day2, :lines}
+      {2, Advent.Day2, :lines},
+      {3, Advent.Day3, :lines}
     ]
   end
 end

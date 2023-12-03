@@ -24,7 +24,7 @@ defmodule Advent.Day2 do
   @doc """
   ## Examples
       iex> Advent.Day2.parse("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
-      {1, {4, 6, 2}}
+      {1, {4, 2, 6}}
   """
   def parse(line) do
     [game, sets] = String.split(line, ": ")
