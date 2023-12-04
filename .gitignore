@@ -31,3 +31,7 @@ venv.bak/
 # .NET
 bin/
 obj/
+
+# Elixir LS
+.elixir_ls/
+.lexical/
