@@ -7,22 +7,20 @@ defmodule Advent.Util.Input do
   @doc """
   Read lines from file and return as is.
   """
-  def lines(filepath) do
-    read_lines(filepath, & &1)
+  def lines(filepath, trim \\ true) do
+    read_lines(filepath, & &1, trim)
   end
 
   @doc """
   Read lines from file and run each line through `mapfunc`.
   """
-  def lines(filepath, mapfunc) do
-    read_lines(filepath, mapfunc)
+  def lines(filepath, mapfunc, trim) do
+    read_lines(filepath, mapfunc, trim)
   end
 
-  defp read_lines(filepath, mapfunc) do
+  defp read_lines(filepath, mapfunc, trim) do
     File.read!(filepath)
-    |> String.split("\n", trim: true)
-    # |> Enum.map(&String.trim/1)
-    |> Enum.filter(fn line -> line != "" end)
+    |> String.split("\n", trim: trim)
     |> Enum.map(mapfunc)
   end
 end

@@ -3,7 +3,9 @@ defmodule Advent.Util.Iter do
   def to_integers(numbers) do
     numbers
     |> Enum.map(fn num ->
-      Integer.parse(num) |> elem(0)
+      num
+      |> Integer.parse()
+      |> elem(0)
     end)
   end
 end
