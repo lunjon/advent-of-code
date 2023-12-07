@@ -33,7 +33,8 @@ defmodule Advent.Main do
       {3, Advent.Day3, :lines},
       {4, Advent.Day4, :lines},
       {5, Advent.Day5, :lines_no_trim},
-      {6, Advent.Day6, :lines}
+      {6, Advent.Day6, :lines},
+      {7, Advent.Day7, :lines}
 
     ]
   end
