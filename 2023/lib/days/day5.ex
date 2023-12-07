@@ -26,17 +26,8 @@ defmodule Advent.Day5 do
     |> Enum.min()
   end
 
-  def part2(seeds, registry) do
-    seeds
-    |> Stream.chunk_every(2)
-    |> Stream.map(fn [a, b] ->
-      Range.to_list(a..(a+b-1))
-      |> Enum.map(fn seed ->
-        get_seed_location(registry, seed)
-      end)
-      |> Enum.min()
-    end)
-    |> Enum.min()
+  def part2(_seeds, _registry) do
+    "TODO"
   end
 
   def get_seed_location(registry, seed) do

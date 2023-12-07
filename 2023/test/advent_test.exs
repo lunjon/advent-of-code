@@ -5,7 +5,11 @@ defmodule AdventTest do
   # doctest Advent.Day4
 
   test("solution for advent") do
-    lines = Input.lines("inputs/day5.sample.txt", false)
-    _ = Advent.Day5.run(lines)
+    lines = Input.lines("inputs/day6.sample.txt")
+    res = Advent.Day6.run(lines)
+    assert res == 288
+
+    # res = Advent.Day6.solve(30,200)
+    # assert res === 9
   end
 end
